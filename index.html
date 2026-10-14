@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Leos Lernwelt | Chamäleon-Klasse</title>
+<style>
+:root{font-family:system-ui,-apple-system,"Segoe UI",sans-serif;color:#27354c}
+*{box-sizing:border-box}body{margin:0;min-height:100vh;background:linear-gradient(130deg,#ffe1e7 0%,#fff6d7 25%,#e2f5d9 50%,#dff0ff 75%,#f0e1fb 100%);padding:24px}
+main{max-width:950px;margin:auto;background:rgba(255,255,255,.9);border-radius:32px;padding:clamp(22px,5vw,52px);box-shadow:0 14px 45px #20304018}
+header{text-align:center}h1{font-size:clamp(2rem,6vw,3.8rem);margin:.2em 0;color:#18877a}p{line-height:1.6}.subtitle{font-size:1.2rem}
+.leo{display:block;width:min(290px,75vw);margin:10px auto;border-radius:24px}.leo-fallback{font-size:5rem}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:18px;margin-top:35px}
+.tile{border-radius:22px;padding:30px 20px;text-align:center;color:#253448;text-decoration:none;font-weight:750;font-size:1.3rem;border:2px solid #ffffff;transition:transform .15s;box-shadow:0 5px 12px #0000000c}
+.tile:hover,.tile:focus-visible{transform:translateY(-3px);outline:3px solid #248a85}.tile span{display:block;font-size:2rem;margin-bottom:8px}
+.pink{background:#ffdae5}.blue{background:#daecff}.green{background:#dff4d6}.yellow{background:#fff0bd}.purple{background:#efe0ff}.mint{background:#d8f4ed}
+section{margin-top:42px}h2{text-align:center;color:#287d77}.game{max-width:450px;margin:auto;padding:25px;border:2px solid #d8eee6;border-radius:22px;text-align:center;background:#fbfffd}
+.question{font-size:2rem;font-weight:700}input{width:100px;padding:12px;font-size:1.4rem;border:2px solid #8bbfba;border-radius:12px;text-align:center}
+button{background:#168777;color:white;border:0;border-radius:12px;font-size:1rem;padding:13px 20px;margin:8px;cursor:pointer}button:hover{background:#116a5e}
+#feedback{min-height:28px;font-weight:bold}footer{text-align:center;margin-top:45px;color:#5b6879;font-size:.95rem}
+</style>
+</head>
+<body><main>
+<header><div class="leo-fallback" id="leoFallback">🦎</div><img class="leo" src="leo.png" alt="Leo, unser buntes Klassenchamäleon" onload="document.getElementById('leoFallback').hidden=true" onerror="this.hidden=true">
+<h1>Willkommen in Leos Lernwelt! 🌈</h1><p class="subtitle">Wir sind die Chamäleon-Klasse. Gemeinsam entdecken, lernen und wachsen wir!</p></header>
+<nav class="grid" aria-label="Lernbereiche">
+<a class="tile pink" href="#deutsch"><span>📚</span>Deutsch</a>
+<a class="tile blue" href="#mathe"><span>🔢</span>Mathematik</a>
+<a class="tile green" href="#sachunterricht"><span>🌿</span>Sachunterricht</a>
+<a class="tile yellow" href="#spiele"><span>🎲</span>Spiele & Rätsel</a>
+<a class="tile purple" href="#klasse"><span>💛</span>Unsere Klasse</a>
+<a class="tile mint" href="#abenteuer"><span>🦎</span>Leos Abenteuer</a>
+</nav>
+<section id="mathe"><h2>🔢 Leos Rechenspiel</h2><div class="game"><p>Rechne mit Leo!</p><p id="question" class="question"></p><label for="answer">Deine Antwort:</label> <input id="answer" type="number" inputmode="numeric"><div><button id="check">Prüfen</button><button id="new">Neue Aufgabe</button></div><p id="feedback" aria-live="polite"></p></div></section>
+<section id="deutsch"><h2>📚 Deutsch</h2><p>Hier entstehen bald neue Wort- und Lesespiele.</p></section>
+<section id="sachunterricht"><h2>🌿 Sachunterricht</h2><p>Hier sammeln wir spannende Forscheraufgaben.</p></section>
+<section id="spiele"><h2>🎲 Spiele & Rätsel</h2><p>Weitere Rätsel folgen bald!</p></section>
+<section id="klasse"><h2>💛 Unsere Klasse</h2><p>Jede Farbe ist besonders – zusammen sind wir ein buntes Team.</p></section>
+<section id="abenteuer"><h2>🦎 Leos Abenteuer</h2><p>Leo freut sich auf neue Lernabenteuer!</p></section>
+<footer>Mit Leo macht Lernen Spaß! 🦎🌈</footer>
+</main>
+<script>
+let correct=0;
+function next(){const a=Math.floor(Math.random()*40)+10,b=Math.floor(Math.random()*40)+10;correct=a+b;document.getElementById('question').textContent=a+' + '+b+' = ?';document.getElementById('answer').value='';document.getElementById('feedback').textContent='';}
+document.getElementById('new').addEventListener('click',next);
+document.getElementById('check').addEventListener('click',()=>{const v=document.getElementById('answer').value;document.getElementById('feedback').textContent=v===''?'Bitte gib eine Zahl ein.':Number(v)===correct?'🌟 Super gemacht! Leo freut sich!':'Versuch es noch einmal! 💛';});
+document.getElementById('answer').addEventListener('keydown',e=>{if(e.key==='Enter')document.getElementById('check').click()});next();
+</script></body></html>
